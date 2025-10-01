@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pastry Flavours - Sri Guru Bangalore Bakery</title>
+    <meta name="description" content="Explore a variety of delicious pastry flavours at Sri Guru Bangalore Bakery, freshly baked daily with premium ingredients.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <style>
+        /* General Reset & Body */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fce4ec; /* Lighter, pastel pink for a bakery feel */
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Hero Section Styling */
+        .hero {
+            position: relative;
+            text-align: center;
+            padding: 80px 20px;
+            background: #ffe0b2 url('https://images.unsplash.com/photo-1579704259837-e59c1c4f5b5f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center/cover; /* New background image */
+            color: #333;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 230, 204, 0.7); /* Slightly transparent overlay */
+        }
+
+        .hero > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.8rem; /* Larger font size */
+            color: #d84315; /* Deeper orange-red */
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero .highlight {
+            color: #e65100; /* Even deeper highlight */
+        }
+
+        .hero p {
+            font-size: 1.3rem; /* Larger font size */
+            color: #4a4a4a; /* Darker grey for better contrast */
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-weight: 400;
+        }
+
+        .hero .btn {
+            display: inline-block;
+            padding: 12px 28px; /* Larger buttons */
+            margin: 0 15px;
+            background-color: #e65100; /* Main button color */
+            color: white;
+            text-decoration: none;
+            border-radius: 30px; /* More rounded */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .hero .btn:hover {
+            background-color: #ff7043; /* Lighter on hover */
+            transform: translateY(-2px);
+        }
+
+        .hero-badge {
+            position: absolute;
+            top: 30px; /* Adjusted position */
+            right: 30px; /* Adjusted position */
+            background-color: #ff7043; /* Badge color */
+            color: white;
+            padding: 8px 18px; /* Larger badge */
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero-badge::before {
+            content: '⭐'; /* Unicode star for consistency */
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        .hero img { /* Styling for the cupcake image */
+            position: absolute;
+            right: 5%; /* Relative positioning */
+            bottom: 10%; /* Adjusted bottom position */
+            transform: none; /* Remove translateY */
+            width: 180px; /* Slightly smaller */
+            height: auto;
+            opacity: 0.9;
+            filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.2));
+            z-index: 1;
+            display: none; /* Hide for now, can be enabled with a specific custom image */
+        }
+
+        /* Home Icon Styling */
+        .home-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: #e65100;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.2s ease;
+            z-index: 1000;
+        }
+
+        .home-icon:hover {
+            color: #ff7043;
+            transform: scale(1.2);
+        }
+
+        /* Container & Section Header */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 60px 20px; /* More padding */
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px; /* More margin */
+        }
+
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem; /* Larger font size */
+            color: #d84315;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Cake Grid & Card */
+        .cake-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px; /* Increased gap */
+            margin-top: 30px;
+            align-items: stretch; /* Ensure cards stretch to same height */
+        }
+
+        .cake-list {
+            flex: 3; /* More space for the cake list */
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Slightly adjusted min width */
+            gap: 30px;
+        }
+
+        .cake-card {
+            background-color: #fff;
+            border-radius: 15px; /* More rounded corners */
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cake-card:hover {
+            transform: translateY(-8px); /* More pronounced lift */
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .cake-card .product-image {
+            width: 100%;
+            height: 220px; /* Slightly taller images */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border-bottom: 3px solid #ff7043; /* Accent line */
+        }
+
+        .cake-card .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Darker overlay */
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .cake-card:hover .product-overlay {
+            opacity: 1;
+        }
+
+        .cake-card .btn-small {
+            background-color: #ff7043;
+            color: white;
+            padding: 10px 20px; /* Larger small button */
+            border: none;
+            border-radius: 20px; /* More rounded small button */
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: 500;
+        }
+
+        .cake-card .btn-small:hover {
+            background-color: #e65100;
+            transform: scale(1.05);
+        }
+
+        .cake-card .product-content {
+            padding: 25px; /* More padding */
+            flex-grow: 1; /* Allow content to grow */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Space out title and description */
+        }
+
+        .cake-card h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem; /* Larger title */
+            color: #e65100;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .cake-card p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        /* Cake Stats */
+        .cake-stats {
+            flex: 1;
+            background: linear-gradient(160deg, #ff7043, #e65100); /* Adjusted gradient */
+            border-radius: 15px;
+            color: white;
+            padding: 30px; /* More padding */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around; /* Evenly space items */
+            gap: 25px; /* Increased gap */
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-item {
+            font-size: 1.8rem; /* Larger numbers */
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .stat-item strong {
+            font-weight: 700;
+            display: block; /* Make number stand out */
+            margin-bottom: 5px;
+            font-size: 2.5rem; /* Even larger number */
+        }
+
+        .stat-label {
+            font-size: 1rem; /* Larger label */
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .cake-container {
+                flex-direction: column;
+            }
+            .cake-list {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            .cake-stats {
+                flex-direction: row; /* Stats horizontally on smaller screens */
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .stat-item {
+                flex-basis: 45%; /* Two stats per row */
+            }
+            .hero img {
+                display: none; /* Hide cupcake on smaller screens if it overlaps */
+            }
+            .home-icon {
+                top: 15px;
+                right: 15px;
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 15px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero .btn {
+                padding: 10px 20px;
+                margin: 5px;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            .cake-card .product-image {
+                height: 180px;
+            }
+            .cake-card h3 {
+                font-size: 1.6rem;
+            }
+            .stat-item {
+                font-size: 1.4rem;
+            }
+            .stat-item strong {
+                font-size: 2rem;
+            }
+            .stat-label {
+                font-size: 0.85rem;
+            }
+            .home-icon {
+                top: 12px;
+                right: 12px;
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-badge {
+                top: 15px;
+                right: 15px;
+                padding: 5px 12px;
+                font-size: 0.85rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 0.9rem;
+            }
+            .hero .btn {
+                font-size: 0.9rem;
+                display: block;
+                width: 80%;
+                margin: 10px auto;
+            }
+            .cake-list {
+                grid-template-columns: 1fr;
+            }
+            .cake-stats {
+                flex-direction: column;
+            }
+            .stat-item {
+                flex-basis: 100%;
+            }
+            .home-icon {
+                top: 10px;
+                right: 10px;
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-icon"><i class="fas fa-home"></i></a>
+    <section class="hero">
+        <h1>Welcome to Sri Guru <span class="highlight">Bangalore Bakery</span></h1>
+        <p>Freshly baked with love every day. Experience the finest quality cakes, breads, and delicious treats that make every moment special.</p>
+        <a href="#cake-flavours" class="btn">Explore Flavours</a>
+    </section>
+
+    <section class="container" id="cake-flavours">
+        <div class="section-header">
+            <h2 class="section-title">Our Delicious Pastry Flavours</h2>
+            <p class="section-subtitle">Discover a world of taste with our freshly baked, handcrafted pastries , perfect for any celebration or sweet craving.</p>
+        </div>
+
+        <div class="cake-container">
+            <div class="cake-list">
+                <div class="cake-card">
+                    <div class="product-image" style="background-image: url('https://imgs.search.brave.com/QCkxbuUnHdHYZ4DIo-13el-nifKwXyWqpohU5g4dWQc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudW5zcGxhc2gu/Y29tL3Bob3RvLTE1/ODgxOTU1MzgzMjYt/YzViMWU5ZjgwYTFi/P2ZtPWpwZyZxPTYw/Jnc9MzAwMCZpeGxp/Yj1yYi00LjEuMCZp/eGlkPU0zd3hNakEz/ZkRCOE1IeHpaV0Z5/WTJoOE9IeDhZMmh2/WTI5c1lYUmxKVEl3/WTJGclpYeGxibnd3/Zkh3d2ZIeDhNQT09');">
+                        <div class="product-overlay">
+                            <!-- Button removed as per structure -->
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h3>Choco Bliss</h3>
+                        <p>A rich, indulgent pastry layered with moist chocolate sponge and silky smooth chocolate cream. Every bite melts in your mouth, delivering pure chocolate happiness.</p>
+                    </div>
+                </div>
+                    
+                <div class="cake-card">
+                    <div class="product-image" style="background-image: url('https://imgs.search.brave.com/h6_Msi3uSHI96dzCrZpaZpdxSliNxNOXrhLXUdVgYDk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWdj/ZG4uZmxvd2VyYXVy/YS5jb20vRFNDXzMw/MDYuanBnP3RyPXct/MzE1LGRwci0x');">
+                        <div class="product-overlay">
+                            <!-- Button removed as per structure -->
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h3>Red Velvet</h3>
+                        <p>A classic favorite! Soft, velvety sponge with a rich cocoa hint, layered with smooth cream cheese frosting. Elegant, moist, and indulgent—perfect for every celebration.</p>
+                    
+                    </div>
+                </div>
+
+                <div class="cake-card">
+                    <div class="product-image" style="background-image: url('https://imgs.search.brave.com/fbgJAuifEw1G3FFpL6b-Syg7YCOcPMOtAb0qWvATuqY/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/c2hyZWVtaXRoYWku/Y29tL2Nkbi9zaG9w/L3Byb2R1Y3RzL2J1/dHRlcnNjb3RjaC1j/YWtlLTE5MTY1NC5q/cGc_dj0xNzA3ODE5/NzY3JndpZHRoPTgw/MA');">
+                        <div class="product-overlay">
+                            <!-- Button removed as per structure -->
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h3>Butterscotch Royale</h3>
+                        <p>A golden indulgence layered with soft sponge, rich caramel cream, and crunchy butterscotch bits. Sweet, nutty, and irresistibly royal in every bite.</p>
+                    </div>
+                </div>
+
+                <div class="cake-card">
+                    <div class="product-image" style="background-image: url('https://imgs.search.brave.com/0-uTCiUVPVuEGmZkpF_BQXSRyqZhxlGQbaSGKhjajkI/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMud2lubmkuaW4v/cHJvZHVjdC9wcmlt/YXJ5LzIwMjQvMy85/NDYwMi5qcGVnP2Rw/cj0xJnc9NDAw');">
+                        <div class="product-overlay">
+                            <!-- Button removed as per structure -->
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h3>Strawberry Sensation</h3>
+                        <p>Light, fluffy sponge layered with fresh cream and juicy strawberries. A refreshing burst of fruity sweetness in every bite—pure happiness on a plate.</p>
+                        
+                    </div>
+                </div>
+
+                <div class="cake-card">
+                    <div class="product-image" style="background-image: url('https://imgs.search.brave.com/SKqzmVjaDUzzDexR9aJ7Ob4R2aF6VkqPpQmEUZsmHLo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMud2lubmkuaW4v/cHJvZHVjdC9wcmlt/YXJ5LzIwMjQvMy85/NDU2Mi5qcGVnP2Rw/cj0xJnc9NDAw  ');">
+                        <div class="product-overlay">
+                            <!-- Button removed as per structure -->
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h3>Pineapple Paradise</h3>
+                        <p>Moist sponge infused with pineapple essence, layered with silky cream and tropical pineapple bites. Sweet, refreshing, and golden good in every slice.</p>
+                        
+                    </div>
+                </div>
+                <div class="cake-card">
+                    <div class="product-image" style="background-image: url('https://imgs.search.brave.com/_rTxfLgdxiAKSI_ePEqq4TAO-4ezaEBWxpHCyXDUbzg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWdj/ZG4uZmxvd2VyYXVy/YS5jb20vRFNDXzgw/MDkuanBnP3RyPXct/MzE1LGRwci0x');">
+                        <div class="product-overlay">
+                            <!-- Button removed as per structure -->
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h3>Vanilla Sky</h3>
+                        <p>Our Vanilla Dream cake is a timeless classic made with real vanilla beans, giving it a rich, aromatic flavor. Soft, fluffy, and perfectly sweet, it’s a treat that feels like a hug in every bite</p>
+                        
+                    </div>
+                </div> 
+                <div class="cake-card">
+                    <div class="product-image" style="background-image: url('./pista2.jpg');">
+                        <div class="product-overlay">
+                            <!-- Button removed as per structure -->
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h3>Pista Royale</h3>
+                        <p>Our Pista Royale cake is a nutty delight made with premium pistachios, offering a subtle sweetness and a rich, creamy texture. Every bite gives you the perfect balance of crunch and smoothness</p>
+                        
+                    </div>
+                </div>
+                <div class="cake-card">
+                    <div class="product-image" style="background-image: url('./chocolate2.jpg');">
+                        <div class="product-overlay">
+                            <!-- Button removed as per structure -->
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h3>Black Forest Bliss</h3>
+                        <p>Our Black Forest Bliss is a decadent chocolate cake layered with luscious whipped cream and juicy cherries, finished with delicate chocolate shavings. A timeless classic that’s rich, moist, and utterly irresistible</p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="cake-stats">
+                <div class="stat-item">
+                    <strong>7+</strong>
+                    <div class="stat-label">Irresistible Flavours</div>
+                </div>
+                <div class="stat-item">
+                    <strong>100%</strong>
+                    <div class="stat-label">Freshly Baked</div>
+                </div>
+                <div class="stat-item">
+                    <strong>Premium</strong>
+                    <div class="stat-label">Ingredients Only</div>
+                </div>
+                <div class="stat-item">
+                    <strong>Custom</strong>
+                    <div class="stat-label">Designs Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/emailjs-config.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

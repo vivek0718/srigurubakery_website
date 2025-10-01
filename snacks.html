@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Types of Snacks - Sri Guru Bangalore Bakery</title>
+    <meta name="description" content="Explore a variety of delicious snacks at Sri Guru Bangalore Bakery, freshly baked daily with premium ingredients.">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fce4ec;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            position: relative;
+            text-align: center;
+            padding: 80px 20px;
+            background: #ffe0b2 url('https://images.unsplash.com/photo-1579704259837-e59c1c4f5b5f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center/cover;
+            color: #333;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 230, 204, 0.7);
+        }
+
+        .hero > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.8rem;
+            color: #d84315;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero .highlight {
+            color: #e65100;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #4a4a4a;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-weight: 400;
+        }
+
+        .hero .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            margin: 0 15px;
+            background-color: #e65100;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .hero .btn:hover {
+            background-color: #ff7043;
+            transform: translateY(-2px);
+        }
+
+        .hero-badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background-color: #ff7043;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero-badge::before {
+            content: '⭐';
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        .hero img {
+            position: absolute;
+            right: 5%;
+            bottom: 10%;
+            transform: none;
+            width: 180px;
+            height: auto;
+            opacity: 0.9;
+            filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.2));
+            z-index: 1;
+            display: none;
+        }
+
+        .home-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: #e65100;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.2s ease;
+            z-index: 1000;
+        }
+
+        .home-icon:hover {
+            color: #ff7043;
+            transform: scale(1.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #d84315;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cake-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 30px;
+            align-items: stretch;
+        }
+
+        .cake-list {
+            flex: 3;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .cake-card {
+            background-color: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cake-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .cake-card .product-image {
+            width: 100%;
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border-bottom: 3px solid #ff7043;
+        }
+
+        .cake-card .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .cake-card:hover .product-overlay {
+            opacity: 1;
+        }
+
+        .cake-card .btn-small {
+            background-color: #ff7043;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: 500;
+        }
+
+        .cake-card .btn-small:hover {
+            background-color: #e65100;
+            transform: scale(1.05);
+        }
+
+        .cake-card .product-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .cake-card h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #e65100;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .cake-card p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .cake-stats {
+            flex: 1;
+            background: linear-gradient(160deg, #ff7043, #e65100);
+            border-radius: 15px;
+            color: white;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            gap: 25px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-item {
+            font-size: 1.8rem;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .stat-item strong {
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 2.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .cake-container {
+                flex-direction: column;
+            }
+            .cake-list {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            .cake-stats {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .stat-item {
+                flex-basis: 45%;
+            }
+            .hero img {
+                display: none;
+            }
+            .home-icon {
+                top: 15px;
+                right: 15px;
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 15px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero .btn {
+                padding: 10px 20px;
+                margin: 5px;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            .cake-card .product-image {
+                height: 180px;
+            }
+            .cake-card h3 {
+                font-size: 1.6rem;
+            }
+            .stat-item {
+                font-size: 1.4rem;
+            }
+            .stat-item strong {
+                font-size: 2rem;
+            }
+            .stat-label {
+                font-size: 0.85rem;
+            }
+            .home-icon {
+                top: 12px;
+                right: 12px;
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-badge {
+                top: 15px;
+                right: 15px;
+                padding: 5px 12px;
+                font-size: 0.85rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 0.9rem;
+            }
+            .hero .btn {
+                font-size: 0.9rem;
+                display: block;
+                width: 80%;
+                margin: 10px auto;
+            }
+            .cake-list {
+                grid-template-columns: 1fr;
+            }
+            .cake-stats {
+                flex-direction: column;
+            }
+            .stat-item {
+                flex-basis: 100%;
+            }
+            .home-icon {
+                top: 10px;
+                right: 10px;
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-icon"><i class="fas fa-home"></i></a>
+    <section class="hero">
+        <h1>Welcome to Sri Guru <span class="highlight">Bangalore Bakery</span></h1>
+        <p>Freshly baked with love every day. Experience the finest quality cakes, breads, and delicious treats that make every moment special.</p>
+        <a href="#cake-flavours" class="btn">Explore Types</a>
+    </section>
+
+    <section class="container" id="cake-flavours">
+        <div class="section-header">
+            <h2 class="section-title">Our Delicious Types of Snacks</h2>
+            <p class="section-subtitle">From crunchy bites to savory delights, our snack selection is perfect for tea-time, on-the-go munching, or anytime you crave something tasty. Each item is freshly made, flavorful, and crafted to satisfy every craving.</p>
+        </div>
+
+        <div class="cake-container">
+            <div class="cake-list">
+                <div class="cake-card">
+                    <div class="product-image" style="background-image: url('https://imgs.search.brave.com/bCGQ91z6vHkxGUeirFkqjr1DlhRia8de_pnhVhKVePM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzEzLzc2LzEzLzA5/LzM2MF9GXzEzNzYx/MzA5NDFfM25weFJM/WGlVUzE2N20zS0ky/Q3pWeTd1aDNpWG90/R1AuanBn');">
+                        <div class="product-overlay">
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h3>Potato Chips</h3>
+                        <p>Indulge in the crispy goodness of our potato chips, made from the finest potatoes and seasoned to perfection. A delightful snack for any occasion!</p>
+                    </div>
+                </div>
+
+                <div class="cake-card">
+                    <div class="product-image" style="background-image: url('https://imgs.search.brave.com/V9YONpD8zh3foi-X56FEebCcLhohRoZab7uzmWafDd8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9yYWtz/a2l0Y2hlbi5uZXQv/d3AtY29udGVudC91/cGxvYWRzLzIwMjQv/MDIvdXJhZC1kYWwt/bXVydWtrdS0zNjB4/NDgwLmpwZw');">
+                        <div class="product-overlay">
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h3>Murukku(Chakralu or Jantikalu)</h3>
+                        <p>naturally nutritious! Made with hearty ragi flour, these biscuits are crisp, subtly sweet, and perfect for a healthy snack any time of the day.</p>
+                    </div>
+                </div>
+
+                <div class="cake-card">
+                    <div class="product-image" style="background-image: url('https://imgs.search.brave.com/RXEBgp3auHjXcuVXhXNQMUzN5ihxxLY0VZvnWYoBTTw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zMy1h/cC1zb3V0aC0xLmFt/YXpvbmF3cy5jb20v/YmV0dGVyYnV0dGVy/YnVja2V0LXNpbHZl/ci92aWR5YS1zaHJp/cmFtMjAxODAyMjMx/MDE5NDg5MDcuanBl/Zw');">
+                        <div class="product-overlay">
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h3>Corn flakes</h3>
+                        <p>"Golden, crispy cornflakes baked to perfection for a light and crunchy snack. Perfect on their own or paired with nuts, chocolate, or dried fruits for an extra burst of flavo</p>
+                    </div>
+                </div>
+
+                <div class="cake-card">
+                    <div class="product-image" style="background-image: url('https://imgs.search.brave.com/5l7-1BTXBuGu-76fXUKx8lE0RcRpG0pT3rYBriYESbo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/c3JpbW91cnlhcy5j/b20vY2RuL3Nob3Av/cHJvZHVjdHMvY2hl/a29kaS0yMDAtZ3Jh/bXNuYW1rZWVuc3Ny/aS1tb3VyeWFzLWZv/b2RzLTY5NDU3OC53/ZWJwP3Y9MTc0MjQ5/MDE2MyZ3aWR0aD0x/OTQ2');">
+                        <div class="product-overlay">
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h3>chakli(Chekodi)</h3>
+                        <p>Golden, crunchy, and perfectly spiced, our chaklis are a traditional snack made fresh daily. Each bite delivers a satisfying crunch and a burst of flavor, perfect for munching anytime</p>
+                    
+                    </div>
+                </div>
+                <div class="cake-card">
+                    <div class="product-image" style="background-image: url('https://imgs.search.brave.com/KOB--L0LwgXa7Umtr-aDpcfAtT2Z67wZK5XV6YpVYc4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NjFwV3BtUmo0ckwu/anBn');">
+                        <div class="product-overlay">
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h3>Peanut laddu(Pappu unda)</h3>
+                        <p>Golden roasted peanut flour blended with ghee and natural sweetness, shaped into soft, melt-in-your-mouth laddus. A wholesome treat that’s rich in flavor and tradition</p>
+
+                    </div>
+                </div>
+            </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/emailjs-config.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
